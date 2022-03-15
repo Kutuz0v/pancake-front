@@ -36,7 +36,6 @@
 
 <script>
 import ClientsList from "@/components/clients/ClientsList";
-// import {useClients} from "@/hooks/useClients";
 import ClientForm from "@/components/clients/ClientForm";
 import axios from "axios";
 import MyDialog from "@/components/UI/MyDialog";
