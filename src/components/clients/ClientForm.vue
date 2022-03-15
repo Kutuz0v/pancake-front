@@ -25,9 +25,10 @@
 <script>
 
 import MyButton from "@/components/UI/MyButton";
+import MyInput from "@/components/UI/MyInput";
 
 export default {
-  components: {MyButton},
+  components: {MyButton, MyInput},
   data() {
     return {
       client: {

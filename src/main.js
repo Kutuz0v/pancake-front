@@ -7,7 +7,7 @@ import components from '@/components/UI'
 const app = createApp(App);
 
 components.forEach(component => {
-    app.component(component.name, component)
+    app.component(component.name)
 })
 
 app
