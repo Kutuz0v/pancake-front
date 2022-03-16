@@ -11,20 +11,29 @@
       Створити клієнта
     </my-button>
     <my-select
-      v-model="selectedSort"
-      :options="sortOptions"
+        v-model="selectedSort"
+        :options="sortOptions"
     />
   </div>
   <my-dialog
       v-model:show="isDialogVisible"
   >
-    <client-form
+    <new-client-form
         @create="createClient"
-    />
+        action="create">
+      <template v-slot:header>
+        Створення клієнта
+      </template>
+      <template v-slot:action>
+        Додати
+      </template>
+    </new-client-form>
+
   </my-dialog>
   <clients-list
       :clients="selectedClients"
       @remove="removeClient"
+      @editClient="onEditClient"
       v-if="!isClientsLoading"
   />
   <div
@@ -36,20 +45,20 @@
 
 <script>
 import ClientsList from "@/components/clients/ClientsList";
-import ClientForm from "@/components/clients/ClientForm";
 import axios from "axios";
 import MyDialog from "@/components/UI/MyDialog";
 import MyButton from "@/components/UI/MyButton";
 import MySelect from "@/components/UI/MySelect";
+import NewClientForm from "@/components/clients/NewClientForm";
 
 export default {
   name: 'ClientsPage',
   components: {
+    NewClientForm,
     MySelect,
     MyButton,
     MyDialog,
     ClientsList,
-    ClientForm
   },
 
   data() {
@@ -94,6 +103,24 @@ export default {
       })
       this.isDialogVisible = false
     },
+    onEditClient(client) {
+      axios.put(
+          `https://pancake-back.herokuapp.com/clients/${client.id}`,
+          {
+            'id': client.id,
+            'name': client.name,
+            'phoneNumber': client.phoneNumber
+          },
+      )
+          .then((response) => {
+            if (response.status === 200) {
+              const index = this.clients.indexOf(client);
+              if (index !== -1) {
+                this.clients[index] = response.data;
+              }
+            }
+          }).catch((e) => console.log(e.response))
+    },
     removeClient(client) {
       new Promise(() => {
         return axios.delete(
@@ -112,13 +139,13 @@ export default {
     }
   },
   computed: {
-    selectedClients(){
+    selectedClients() {
       return [...this.clients].sort((client1, client2) => client1[this.selectedSort]?.localeCompare(client2[this.selectedSort]))
 
     }
   },
   watch: {
-    selectedSort(newVal){
+    selectedSort(newVal) {
       this.clients.sort(
           (client1, client2) => {
             return client1[newVal]?.localeCompare(client2[newVal])
@@ -138,6 +165,7 @@ export default {
 <style scoped>
 .create__btn {
 }
+
 .client__btns {
   margin: 15px 20px;
   display: flex;

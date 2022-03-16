@@ -20,7 +20,7 @@ export default {
 <style>
 * {
   margin: 0;
-  padding: 1rem;
+  /*padding: 1rem;*/
   box-sizing: border-box;
 }
 </style>

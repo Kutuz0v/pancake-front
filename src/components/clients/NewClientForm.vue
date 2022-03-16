@@ -1,8 +1,11 @@
 <template>
+
   <form
       @submit.prevent
   >
-    <h3>Створення клієнта</h3>
+    <h3>
+      <slot name="header"></slot>
+    </h3>
     <my-input
         v-model="client.name"
         type="text"
@@ -15,11 +18,12 @@
     />
     <my-button
         class="create__btn"
-        @click="createClient"
+        @click="doAction"
     >
-      Додати
+      <slot name=action></slot>
     </my-button>
   </form>
+
 </template>
 
 <script>
@@ -29,6 +33,24 @@ import MyInput from "@/components/UI/MyInput";
 
 export default {
   components: {MyButton, MyInput},
+  props: {
+    action: {
+      type: String,
+      required: true
+    },
+    transferredClient: {
+      type: Object,
+      name: {
+        type: String,
+        default: ''
+      },
+      phoneNumber: {
+        type: String,
+        default: ''
+      },
+      required: false
+    }
+  },
   data() {
     return {
       client: {
@@ -38,13 +60,13 @@ export default {
     }
   },
   methods: {
-    createClient() {
-      this.$emit('create', this.client)
-      this.client = {
-        name: '',
-        phoneNumber: ''
-      }
+    doAction() {
+      this.$emit(this.action, this.client)
     }
+  },
+  mounted() {
+    if (this.transferredClient !== undefined)
+      this.client = this.transferredClient
   }
 }
 </script>
@@ -52,11 +74,12 @@ export default {
 <style scoped>
 
 
-form{
+form {
   display: flex;
   flex-direction: column;
 }
-.create__btn{
+
+.create__btn {
   align-self: flex-end;
   margin-top: 15px;
 }

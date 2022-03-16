@@ -8,6 +8,7 @@
           :client='client'
           :key="client.id"
           @remove="$emit('remove', client)"
+          @editClient="editClient"
       />
     </transition-group>
   </div>
@@ -25,7 +26,7 @@ import ClientItem from "@/components/clients/ClientItem";
 export default {
   components: {ClientItem},
   name: "ClientsList",
-  emits: ['remove'],
+  emits: ['remove', 'editClient'],
 
   props: {
     client: {
@@ -39,6 +40,11 @@ export default {
       required: true
     }
   },
+  methods: {
+    editClient(client) {
+      this.$emit('editClient', client)
+    }
+  }
 }
 </script>
 
