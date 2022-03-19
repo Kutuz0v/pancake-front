@@ -1,11 +1,10 @@
 <template>
 
-  <h1>
+  <h1 class="unglued">
     Наші клієнти
   </h1>
   <div class="client__btns">
     <my-button
-        class="create__btn"
         @click="showDialog"
     >
       Створити клієнта
@@ -163,8 +162,6 @@ export default {
 </script>
 
 <style scoped>
-.create__btn {
-}
 
 .client__btns {
   margin: 15px 20px;
