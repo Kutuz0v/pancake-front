@@ -4,11 +4,11 @@
     Наші клієнти
   </h1>
   <div class="client__btns">
-    <my-button
-        @click="showDialog"
+    <soft-button
+        @click="dialog"
     >
       Створити клієнта
-    </my-button>
+    </soft-button>
     <my-select
         v-model="selectedSort"
         :options="sortOptions"
@@ -27,7 +27,6 @@
         Додати
       </template>
     </new-client-form>
-
   </my-dialog>
   <clients-list
       :clients="selectedClients"
@@ -46,16 +45,16 @@
 import ClientsList from "@/components/clients/ClientsList";
 import axios from "axios";
 import MyDialog from "@/components/UI/MyDialog";
-import MyButton from "@/components/UI/MyButton";
 import MySelect from "@/components/UI/MySelect";
 import NewClientForm from "@/components/clients/NewClientForm";
+import SoftButton from "@/components/UI/SoftButton";
 
 export default {
   name: 'ClientsPage',
   components: {
+    SoftButton,
     NewClientForm,
     MySelect,
-    MyButton,
     MyDialog,
     ClientsList,
   },
@@ -133,7 +132,7 @@ export default {
             })
       })
     },
-    showDialog() {
+    dialog() {
       this.isDialogVisible = true
     }
   },

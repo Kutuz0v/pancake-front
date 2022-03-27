@@ -22,7 +22,7 @@ export default {
 }
 .navbar {
   height: 50px;
-  background-color: lightgray;
+  /*background-color: lightgray;*/
   box-shadow: 2px 2px 4px gray;
   display: flex;
   flex-direction: row;
@@ -37,6 +37,7 @@ export default {
   margin-right: 0;
 }
 .box-end{
+  background-color: unset;
   margin-left: auto;
 }
 .flex-row {
@@ -44,7 +45,7 @@ export default {
   padding: 15px 10px;
   display: flex;
   justify-content: space-between;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
-
-
 </style>

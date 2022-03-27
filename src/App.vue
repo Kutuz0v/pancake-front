@@ -18,9 +18,14 @@ export default {
 </script>
 
 <style>
+.app{
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
 * {
-  margin: 0;
+  /*margin: 0;*/
   /*padding: 1rem;*/
-  box-sizing: border-box;
+
 }
 </style>

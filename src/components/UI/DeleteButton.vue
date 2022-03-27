@@ -1,7 +1,7 @@
 <template>
   <button
       class="gg-trash"
-      @click="$emit('update')"
+      @click="$emit('delete')"
   />
 </template>
 

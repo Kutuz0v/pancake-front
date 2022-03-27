@@ -1,6 +1,11 @@
 <template>
   <div class="ingredient">
-    {{ ingredient.value }}
+    <div class="column">
+      {{ ingredient.value }}
+    </div>
+    <div class="column checkbox" v-if="needCheck">
+      +
+    </div>
   </div>
 </template>
 
@@ -8,6 +13,11 @@
 export default {
   name: "IngredientItem",
   props: {
+    needCheck: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     ingredient: {
       type: Object,
       required: true,
@@ -24,5 +34,14 @@ export default {
 .ingredient{
 margin-left: 30px;
   margin-top: 5px;
+}
+.column {
+  display: inline-block;
+  margin: auto;
+}
+.checkbox {
+  float: right;
+  margin-right: 20px;
+
 }
 </style>

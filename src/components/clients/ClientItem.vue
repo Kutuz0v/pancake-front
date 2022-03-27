@@ -27,23 +27,29 @@
         </template>
       </new-client-form>
     </my-dialog>
-    <my-button
+<!--    <my-button-->
+<!--        class="post__btn"-->
+<!--        @click="$emit('remove', client)"-->
+<!--    >-->
+<!--      Видалити-->
+<!--    </my-button>-->
+    <delete-button
         class="post__btn"
-        @click="$emit('remove', client)"
-    >
-      Видалити
-    </my-button>
+        @click="$emit('remove', client)"/>
   </div>
 
 </template>
 
 <script>
-import MyButton from "@/components/UI/MyButton";
 import MyDialog from "@/components/UI/MyDialog";
 import NewClientForm from "@/components/clients/NewClientForm";
+import DeleteButton from "@/components/UI/DeleteButton";
 
 export default {
-  components: {NewClientForm, MyDialog, MyButton},
+  components: {
+    DeleteButton,
+    NewClientForm,
+    MyDialog},
   props: {
     client: {
       type: Object,
@@ -86,19 +92,25 @@ export default {
 
 <style scoped>
 .client-item {
+  border-radius: 5px;
   padding: 15px;
   border: 2px solid teal;
   margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   /*display:inline-block*/
 }
 .client-data {
   /*display: inline-flex;*/
-  display:inline-block
+  display: inline-block;
+  line-height: 30px;
+  margin-left: 10px;
 }
 .post__btn {
-align-self: auto;
+  transform: scale(1.2);
+  align-self: auto;
+  margin-right: 15px;
 }
 </style>

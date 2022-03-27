@@ -4,6 +4,7 @@
     v-for="pancake in pancakes"
     :pancake="pancake"
     :key="pancake.id"
+    @deletePancake="deletePancake"
     />
 </div>
 </template>
@@ -17,6 +18,11 @@ export default {
     pancakes: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    deletePancake(pancake) {
+      this.$emit('deletePancake', pancake)
     }
   }
 }

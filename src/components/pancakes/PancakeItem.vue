@@ -1,6 +1,6 @@
 <template>
   <div class="pancake">
-    <div class="header">
+    <div class="header-text">
       <h3 class="header-item">
       Ціна: {{ pancake.price }}
     </h3>
@@ -9,10 +9,11 @@
       </h3>
 
       <delete-button
-          @update="deleteClick"
+          @delete="deletePancake"
       />
     </div>
     <ingredients-list
+        class="list"
         :ingredients="pancake.ingredients"
     />
   </div>
@@ -37,8 +38,8 @@ export default {
     }
   },
   methods: {
-    deleteClick(){
-      console.log('click delete')
+    deletePancake(){
+      this.$emit('deletePancake', this.pancake)
     }
   }
 }
@@ -46,10 +47,10 @@ export default {
 
 <style scoped>
 
-.header {
+.header-text {
   display: flex;
   align-self: flex-end;
-  border-bottom: 1px solid teal;
+  /*border-bottom: 1px solid teal;*/
 }
 .header-item{
   margin-left: 15px;
@@ -60,6 +61,9 @@ export default {
   margin-right: auto;
   margin-top: 20px;
 }
-
+.list{
+  border-radius: 5px;
+  border-top: 1px solid teal;
+}
 
 </style>

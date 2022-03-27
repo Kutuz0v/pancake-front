@@ -75,6 +75,7 @@ export default {
 
 
 form {
+  background-color: inherit;
   display: flex;
   flex-direction: column;
 }

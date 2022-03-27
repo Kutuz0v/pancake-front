@@ -31,7 +31,11 @@ export default {
 </script>
 
 <style scoped>
+* {
+  background-color: #FBFBFD;
+}
 .dialog {
+  z-index: 2;
   top: 0;
   bottom: 0;
   right: 0;
@@ -40,16 +44,22 @@ export default {
   display: flex;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .dialog__content {
   margin: auto;
-  background: white;
+  /*background: white;*/
+
   border-radius: 12px;
   min-height: 50px;
+  max-height: 80%;
   min-width: 300px;
   position: absolute;
+  margin-top: 15%;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
+  overflow: scroll;
+  /*overflow-x: scroll;*/
 }
 </style>
