@@ -78,7 +78,9 @@ form {
   background-color: inherit;
   display: flex;
   flex-direction: column;
+  max-width: 90%;
 }
+
 
 .create__btn {
   align-self: flex-end;

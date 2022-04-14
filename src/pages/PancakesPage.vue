@@ -11,7 +11,10 @@
     <my-dialog
         v-model:show="isDialogVisible"
     >
-      <pancake-form/>
+      <pancake-form
+          @addPancake="addPancake"
+          @hide=dialog
+      />
     </my-dialog>
     <pancakes-list
         :pancakes="pancakes"
@@ -38,13 +41,44 @@ export default {
   },
   methods: {
     dialog() {
-      this.isDialogVisible = true
+      this.isDialogVisible = !this.isDialogVisible
     },
+
     getPancakes() {
       axios.get(`https://pancake-back.herokuapp.com/pancakes`)
           .then((response) => {
             this.pancakes = response.data
           })
+    },
+
+    addPancake(ingredients) {
+      new Promise(() => {
+        const pancake = {
+          price: 0,
+          weight: 0,
+          ingredients: ingredients
+        }
+
+        ingredients.forEach(ingredient => {
+          pancake.price += ingredient.price
+          pancake.weight += ingredient.weight
+        })
+
+        if (pancake.price !== 0)
+          axios.post(
+              'https://pancake-back.herokuapp.com/pancakes',
+              pancake
+          )
+              .then(response =>{
+                console.log(response.status)
+                if (response.status === 200)
+                  this.pancakes.push(pancake)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+      })
+      this.isDialogVisible = false
     },
     deletePancake(pancake) {
       console.log('page: ', pancake)

@@ -47,19 +47,22 @@ export default {
 
 .dialog__content {
   margin: auto;
-  /*background: white;*/
+  /*background: red;*/
 
   border-radius: 12px;
   min-height: 50px;
   max-height: 80%;
   min-width: 300px;
   position: absolute;
-  margin-top: 15%;
-  top: 30%;
+  /*position: fixed;*/
+  /*margin-top: 15%;*/
+  /*top: 30px;*/
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  overflow: scroll;
+
+  /*overflow-y: scroll;*/
+  /*border: 50px red;*/
   /*overflow-x: scroll;*/
 }
 </style>

@@ -4,11 +4,14 @@
   >
 
     <div class="header">
-      <close-button/>
+      <close-button
+          @click="this.$emit('hide', false)"
+      />
       <h4
           class="header-text"
       >Edit pancake</h4>
       <add-button
+          @click="createPancake"
           class="add-btn"
       />
     </div>
@@ -35,16 +38,16 @@ export default {
   data() {
     return {
       ingredients: [],
-      checkedPancakes: [],
+      checkedIngredients: [],
     }
   },
   methods: {
     selectIngredient(ingredient) {
-      if (this.checkedPancakes.includes(ingredient)) {
-        const index = this.checkedPancakes.indexOf(ingredient);
-        this.checkedPancakes.splice(index, 1)
+      if (this.checkedIngredients.includes(ingredient)) {
+        const index = this.checkedIngredients.indexOf(ingredient);
+        this.checkedIngredients.splice(index, 1)
       } else {
-        this.checkedPancakes.push(ingredient)
+        this.checkedIngredients.push(ingredient)
       }
     },
     getIngredients() {
@@ -56,6 +59,12 @@ export default {
             alert('Error downloading ingredients: ' + err)
           })
     },
+    createPancake() {
+      if (this.checkedIngredients.length === 0)
+        this.$emit('hide', false)
+      else
+        this.$emit('addPancake', this.checkedIngredients)
+    }
   },
   mounted() {
     this.getIngredients()
@@ -64,18 +73,19 @@ export default {
 </script>
 
 <style scoped>
-.col1{
+.col1 {
   margin-right: auto;
   float: left;
   width: 60%;
   /*margin-left: auto;*/
 }
 
-.col2{
+.col2 {
   float: right;
   margin-left: auto;
-/*margin-right: auto;*/
+  /*margin-right: auto;*/
 }
+
 .column {
   background-color: #FBFBFD;
   /*width: 40%;*/
