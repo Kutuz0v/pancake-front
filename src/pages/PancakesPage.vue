@@ -8,14 +8,14 @@
     >
       Create pancake
     </soft-button>
-    <my-dialog
+    <new-dialog
         v-model:show="isDialogVisible"
     >
       <pancake-form
           @addPancake="addPancake"
           @hide=dialog
       />
-    </my-dialog>
+    </new-dialog>
     <pancakes-list
         :pancakes="pancakes"
         @deletePancake="deletePancake"
@@ -27,12 +27,12 @@
 import axios from "axios";
 import PancakesList from "@/components/pancakes/PancakesList";
 import SoftButton from "@/components/UI/SoftButton";
-import MyDialog from "@/components/UI/MyDialog";
 import PancakeForm from "@/components/pancakes/PancakeForm";
+import NewDialog from "@/components/UI/NewDialog";
 
 export default {
   name: "PancakesPage",
-  components: {PancakeForm, MyDialog, SoftButton, PancakesList},
+  components: {NewDialog, PancakeForm, SoftButton, PancakesList},
   data() {
     return {
       pancakes: [],

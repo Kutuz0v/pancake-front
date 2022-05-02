@@ -9,7 +9,7 @@
       />
       <h4
           class="header-text"
-      >Edit pancake</h4>
+      >Додати млинець</h4>
       <add-button
           @click="createPancake"
           class="add-btn"
@@ -94,7 +94,7 @@ export default {
 
 .header {
   display: flex;
-  background-color: #FBFBFD;
+  /*background-color: #FBFBFD;*/
 
 }
 
@@ -106,7 +106,7 @@ export default {
 
 .header-text {
   margin: auto auto 10px;
-  background-color: #FBFBFD;
+  /*background-color: #FBFBFD;*/
 
 }
 
